@@ -1,0 +1,153 @@
+*
+{
+    box-sizing: border-box;
+}
+
+webview
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+html,
+body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+menu
+{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    margin: 0;
+    padding: 0;
+}
+#button-group
+{
+    height: 30px;
+
+    background: linear-gradient(to bottom, rgba(0,0,0,.8) 0%, rgba(0,0,0,0) 100%);
+}
+#button-group > div
+{
+    display: inline-block;
+
+    padding: 5px;
+
+    cursor: pointer;
+
+    color: #fff;
+}
+
+#button-group > div:hover
+{
+    color: #ddd;
+}
+
+#button-group > div.active
+{
+    color: #00796b;
+}
+
+#move
+{
+    -webkit-app-region: drag;
+}
+#cinema-overlay
+{
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: none;
+}
+#cinema-overlay.active
+{
+    display: block;
+}
+#close
+{
+    float: right;
+}
+#input
+{
+    display: block;
+
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px 10px;
+}
+
+menu.fadein
+{
+    display: block;
+
+    -webkit-animation: fadeInFromNone .2s ease-out;
+}
+
+menu.fadeout
+{
+    display: block;
+
+    -webkit-animation: fadeOutToNone .2s ease-out;
+
+    opacity: 0;
+}
+
+@-webkit-keyframes fadeOutToNone
+{
+    0%
+    {
+        display: block;
+
+        opacity: 1;
+    }
+
+    99%
+    {
+        display: block;
+
+        opacity: 0;
+    }
+
+    100%
+    {
+        display: none;
+
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeInFromNone
+{
+    0%
+    {
+        display: none;
+
+        opacity: 0;
+    }
+
+    1%
+    {
+        display: block;
+
+        opacity: 0;
+    }
+
+    100%
+    {
+        display: block;
+
+        opacity: 1;
+    }
+}

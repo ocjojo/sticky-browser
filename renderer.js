@@ -1,0 +1,82 @@
+// This file is required by the index.html file and will
+// be executed in the renderer process for that window.
+// All of the Node.js APIs are available in this process.
+
+(function(){
+	const fs = require('fs');
+	const {ipcRenderer} = require('electron');
+
+	var webview,
+	injectCss = fs.readFileSync('./styles/inject.css', 'utf8');
+
+	//inject css for every page loaded
+	
+
+	function loadWebview(url){
+		if(!webview){
+			webview = document.getElementById('webview');
+			webview.src = url;
+			webview.addEventListener('dom-ready', (e) => {
+				webview.insertCSS(injectCss);
+				// webview.openDevTools();
+			});
+		} else {
+			webview.loadURL(url);
+		}
+	}
+	
+	var input = document.getElementById('input');
+
+	//after paste set src on webview
+	input.addEventListener('paste', function (event) {
+		//needed for 
+		setTimeout(()=>{
+			loadWebview(event.target.value);
+			input.classList.add('hidden');
+		}, 0);
+	});
+
+	//pin toggle
+	document.getElementById('pin').addEventListener('click', (e)=>{
+		ipcRenderer.send('toggle', 'pin');
+		e.currentTarget.classList.toggle('active');
+	});
+
+	//cinema mode toggle
+	var cinema = false;
+	function toggleCinema(e){
+		e.stopPropagation();
+		cinema = !cinema;
+		document.getElementById('cinema').classList.toggle('active');
+		document.getElementById('cinema-overlay').classList.toggle('active');
+
+	}
+	document.getElementById('cinema').addEventListener('click', toggleCinema);
+	document.getElementById('cinema-overlay').addEventListener('click', toggleCinema);
+
+	//fullscreen toggle
+	document.getElementById('fullscreen').addEventListener('click', (e)=>{
+		e.currentTarget.classList.toggle('active');
+		ipcRenderer.send('toggle', 'fullscreen');
+	});
+
+	//close button
+	document.getElementById('close').addEventListener('click', (e)=>{
+		ipcRenderer.send('toggle', 'close');
+		e.currentTarget.classList.toggle('active');
+	});
+
+	var timeout;
+	var menu = document.querySelector('menu');
+	document.querySelector('body').addEventListener('mousemove', ()=>{
+		if(cinema) return;
+		menu.classList.remove('fadeout');
+		menu.classList.add('fadein');
+		clearTimeout(timeout);
+		timeout = setTimeout(function () {
+				menu.classList.remove('fadein');
+				menu.classList.add('fadeout');
+		}, 1500);
+	});
+
+})();

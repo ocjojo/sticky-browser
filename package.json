@@ -1,0 +1,27 @@
+{
+  "name": "sticky-browser",
+  "productName": "StickyBrowser",
+  "version": "1.0.0",
+  "description": "Frameless Browser that can be made sticky, e.g. always on top. So you have picture in picture.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "Picture in Picture",
+    "Always on top",
+    "Browser",
+    "Video",
+    "Viewer"
+  ],
+  "author": "Lukas Ehnle",
+  "license": "",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  }
+}
