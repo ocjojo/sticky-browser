@@ -19,9 +19,8 @@
   "author": "Lukas Ehnle",
   "license": "",
   "devDependencies": {
-    "electron": "^1.4.1"
-  },
-  "dependencies": {
+    "electron": "^1.6.2",
     "font-awesome": "^4.7.0"
-  }
+  },
+  "dependencies": {}
 }
