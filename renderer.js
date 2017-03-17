@@ -13,6 +13,9 @@
 	
 
 	function loadWebview(url){
+		if(url.indexOf('//') == -1){
+			url = "https://" + url;
+		}
 		if(!webview){
 			webview = document.getElementById('webview');
 			webview.src = url;
@@ -28,12 +31,16 @@
 	var input = document.getElementById('input');
 
 	//after paste set src on webview
-	input.addEventListener('paste', function (event) {
+	input.addEventListener('paste', (event)=>{
 		//needed for 
 		setTimeout(()=>{
 			loadWebview(event.target.value);
-			input.classList.add('hidden');
 		}, 0);
+	});
+	input.addEventListener('keyup', (e)=>{
+		if (e.keyCode == 13) {
+			loadWebview(e.target.value);
+		}
 	});
 
 	//pin toggle
