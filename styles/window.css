@@ -29,6 +29,10 @@ menu
     margin: 0;
     padding: 0;
 }
+menu.bot {
+    top: auto;
+    bottom: 0;
+}
 #button-group
 {
     height: 30px;

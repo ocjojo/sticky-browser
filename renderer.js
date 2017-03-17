@@ -60,6 +60,11 @@
 		ipcRenderer.send('toggle', 'fullscreen');
 	});
 
+	document.getElementById('menu').addEventListener('click', (e)=>{
+		e.currentTarget.classList.toggle('active');
+		e.currentTarget.parentNode.parentNode.classList.toggle('bot');
+	});
+
 	//close button
 	document.getElementById('close').addEventListener('click', (e)=>{
 		ipcRenderer.send('toggle', 'close');
