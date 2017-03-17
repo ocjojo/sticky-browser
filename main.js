@@ -6,6 +6,49 @@ const {
 
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
+
+/**
+ * tries to find widevineCdm to be able to play protected content
+ * @return {boolean} returns true if found and registered, false otherwise
+ */
+function registerWidevine(){
+	var chromeDir,
+		widevineDir,
+		widevinePlugin,
+		versions,
+		manifest;
+
+	if (process.platform == 'darwin') {
+		chromeDir = "/Applications/Google Chrome.app/Contents/Versions/";
+		widevineDir = "Google Chrome Framework.framework/Libraries/WidevineCdm";
+		widevinePlugin = "_platform_specific/mac_x64/widevinecdmadapter.plugin";
+	}
+	try{
+		versions = fs.readdirSync(chromeDir);
+		// filter same major version
+		versions = versions.filter(version=>{
+			return process.versions.chrome.split('.')[0] == version.split('.')[0];
+		});
+		//read manifest for widevine-cdm-version
+		manifest = require(path.join(chromeDir, versions[0], widevineDir, 'manifest.json'));	
+	} catch(e){
+		return false;
+	}
+	var org = path.join(chromeDir, versions[0], widevineDir, widevinePlugin);
+	
+	// You have to pass the filename of `widevinecdmadapter` here, it is
+	// * `widevinecdmadapter.plugin` on macOS,
+	// * `libwidevinecdmadapter.so` on Linux,
+	// * `widevinecdmadapter.dll` on Windows.
+	app.commandLine.appendSwitch('widevine-cdm-path', org);
+	// The version of plugin can be got from `chrome://plugins` page in Chrome.
+	app.commandLine.appendSwitch('widevine-cdm-version', manifest.version);
+	return true;
+}
+
+var widevine = registerWidevine();
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -20,7 +63,11 @@ function createWindow() {
 		minHeight: 160,
 		frame: false,
 		alwaysOnTop: true,
-		fullscreenable: false
+		fullscreenable: false,
+		webPreferences: {
+			// The `plugins` have to be enabled.
+			plugins: widevine
+		},
 	});
 
 	// and load the index.html of the app.
