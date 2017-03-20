@@ -3,14 +3,9 @@
 // All of the Node.js APIs are available in this process.
 
 (function(){
-	const fs = require('fs');
 	const {ipcRenderer} = require('electron');
 
-	var webview,
-	injectCss = fs.readFileSync('./styles/inject.css', 'utf8');
-
-	//inject css for every page loaded
-	
+	var webview;
 
 	function loadWebview(url){
 		if(url.indexOf('//') == -1){
@@ -19,10 +14,9 @@
 		if(!webview){
 			webview = document.getElementById('webview');
 			webview.src = url;
-			webview.addEventListener('dom-ready', (e) => {
-				webview.insertCSS(injectCss);
-				// webview.openDevTools();
-			});
+			// webview.addEventListener('dom-ready', (e) => {
+			// 	webview.openDevTools();
+			// });
 		} else {
 			webview.loadURL(url);
 		}
