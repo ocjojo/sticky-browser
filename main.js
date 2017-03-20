@@ -1,6 +1,7 @@
 const {
 	app,
 	BrowserWindow,
+	Menu,
 	ipcMain
 } = require('electron');
 
@@ -92,7 +93,28 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', ()=>{
+	const menuTemplate = [{
+		label: "StickyBrowser",
+		submenu: [
+		    { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+		]}, {
+		label: "Edit",
+		submenu: [
+		    { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+		    { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+		    { type: "separator" },
+		    { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+		    { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+		    { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+		    { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+		]}
+	];
+
+	Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
+
+	createWindow();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
