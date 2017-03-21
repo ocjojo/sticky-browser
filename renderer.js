@@ -45,15 +45,30 @@
 
 	//cinema mode toggle
 	var cinema = false;
-	function toggleCinema(e){
-		e.stopPropagation();
+	function toggleCinema(){
 		cinema = !cinema;
 		document.getElementById('cinema').classList.toggle('active');
 		document.getElementById('cinema-overlay').classList.toggle('active');
-
 	}
-	document.getElementById('cinema').addEventListener('click', toggleCinema);
-	document.getElementById('cinema-overlay').addEventListener('click', toggleCinema);
+	function enableCinema(e){
+		e.stopPropagation();
+		toggleCinema();
+	}
+	//Disable cinema on two clicks within a second
+	var cinemaDisableClickCount = 0;
+	function disableCinema(e){
+		e.stopPropagation();
+		if(cinemaDisableClickCount > 0){
+			toggleCinema();
+		} else {
+			cinemaDisableClickCount++;
+			setTimeout(()=>{
+				cinemaDisableClickCount = 0;
+			}, 1000);
+		}
+	}
+	document.getElementById('cinema').addEventListener('click', enableCinema);
+	document.getElementById('cinema-overlay').addEventListener('click', disableCinema);
 
 	//fullscreen toggle
 	document.getElementById('fullscreen').addEventListener('click', (e)=>{
