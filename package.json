@@ -3,7 +3,7 @@
   "productName": "StickyBrowser",
   "version": "1.0.0",
   "description": "Frameless Browser that can be made sticky, e.g. always on top. So you have picture in picture.",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
     "start": "electron .",
     "pack": "build --dir",

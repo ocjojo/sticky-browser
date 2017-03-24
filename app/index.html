@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>StickyBrowser</title>
+	<link rel="stylesheet" type="text/css" href="../node_modules/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./styles/window.css">
+</head>
+<body>
+	<menu>
+		<div id="button-group">
+			<div id="move"><i class="fa fa-arrows" aria-hidden="true"></i></div>
+			<div id="pin" title="Toggle 'Always-on-top'" class="active"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+			<div id="cinema" title="Disable menu. Reactivate with double-click."><i class="fa fa-television" aria-hidden="true"></i></div>
+			<div id="fullscreen" title="Fullscreen"><i class="fa fa-arrows-alt" aria-hidden="true"></i></div>
+			<div id="menu" title="Switch menu to bottom"><i class="fa fa-retweet" aria-hidden="true"></i></div>
+			<div id="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+			
+		</div>
+		<input type="text" name="url" id="input" placeholder="Url (type + enter or paste)">
+	</menu>
+	
+	<webview id="webview" src></webview>
+	<div id="cinema-overlay"></div>
+</body>
+
+<script>
+    // You can also require other files to run in this process
+    require('./renderer.js');
+</script>
+</html>

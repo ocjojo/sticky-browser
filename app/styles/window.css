@@ -37,8 +37,9 @@ menu.bot
 #button-group
 {
     height: 30px;
+    user-select: none;
 
-    background: linear-gradient(to bottom, rgba(0,0,0,.8) 0%, rgba(0,0,0,0) 100%);
+    background: rgb(51,51,51);
 }
 #button-group > div
 {
@@ -91,8 +92,15 @@ menu.bot
     display: block;
 
     width: 100%;
-    margin-top: 20px;
     padding: 5px 10px;
+    outline: none;
+    color: #fff;
+    border: 0;
+    
+    background: rgb(51,51,51);
+}
+#input::-webkit-input-placeholder{
+    color: rgb(204,204,204);
 }
 
 menu.fadein

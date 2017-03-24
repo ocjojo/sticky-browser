@@ -32,6 +32,7 @@
 		}, 0);
 	});
 	input.addEventListener('keyup', (e)=>{
+		toggleFade();
 		if (e.keyCode == 13) {
 			loadWebview(e.target.value);
 		}
@@ -89,7 +90,7 @@
 
 	var timeout;
 	var menu = document.querySelector('menu');
-	document.querySelector('body').addEventListener('mousemove', ()=>{
+	function toggleFade(){
 		if(cinema) return;
 		menu.classList.remove('fadeout');
 		menu.classList.add('fadein');
@@ -98,6 +99,7 @@
 				menu.classList.remove('fadein');
 				menu.classList.add('fadeout');
 		}, 1500);
-	});
+	}
+	document.querySelector('body').addEventListener('mousemove', toggleFade);
 
 })();
