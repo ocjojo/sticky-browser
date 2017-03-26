@@ -17,11 +17,15 @@
 			<div id="close"><i class="fa fa-times" aria-hidden="true"></i></div>
 			
 		</div>
-		<input type="text" name="url" id="input" placeholder="Url (type + enter or paste)">
+		<input type="text" name="url" id="urlbar" placeholder="Url (type + enter or paste)">
 	</menu>
 	
 	<webview id="webview" plugins src></webview>
 	<div id="cinema-overlay"></div>
+	<div id="popup">
+		<div id="popup-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+		<div id="popup-content"></div>
+	</div>
 </body>
 
 <script>

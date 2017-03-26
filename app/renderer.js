@@ -6,11 +6,19 @@
 	const {ipcRenderer} = require('electron');
 
 	var webview;
+	var popupElement = document.getElementById('popup');
+	var fadeTimeout;
+	var menu = document.querySelector('menu');
+	var urlbar = document.getElementById('urlbar');
+	var cinemaMode = false;
+	var cinemaDisableClickCount = 0;
 
 	//checks if widevine is loaded
 	ipcRenderer.send('toggle', 'widevine');
-	ipcRenderer.on('widevine', (event, arg) => {
-		console.log(arg);
+	ipcRenderer.on('widevine', (event, active) => {
+		if(!active){
+			popup("Could not locate widevine. Will not be able to play encrypted content.");
+		}
 	});
 
 	/**
@@ -31,18 +39,29 @@
 			webview.loadURL(url);
 		}
 	}
-	
 
-	var input = document.getElementById('input');
+	/**
+	 * show a dismissable popup with the specified text
+	 * @param  {string} text
+	 */
+	function popup(text){
+		document.getElementById('popup-content').innerHTML = text;
+		popupElement.classList.add('active');
+	}
+	document.getElementById('popup-close').addEventListener('click', (e)=>{
+		popupElement.classList.remove('active');
+	});
+
+	
 	// event listener for paste to url bar
-	input.addEventListener('paste', (event)=>{
+	urlbar.addEventListener('paste', (event)=>{
 		//needed for value to be accessible
 		setTimeout(()=>{
 			loadWebview(event.target.value);
 		}, 0);
 	});
 	// event listener for typing
-	input.addEventListener('keyup', (e)=>{
+	urlbar.addEventListener('keyup', (e)=>{
 		toggleFade(); //keep menu visible on typing
 		if (e.keyCode == 13) { //on enter load url
 			loadWebview(e.target.value);
@@ -56,9 +75,8 @@
 	});
 
 	//cinema mode toggle
-	var cinema = false;
 	function toggleCinema(){
-		cinema = !cinema;
+		cinemaMode = !cinemaMode;
 		document.getElementById('cinema').classList.toggle('active');
 		document.getElementById('cinema-overlay').classList.toggle('active');
 	}
@@ -67,7 +85,6 @@
 		toggleCinema();
 	}
 	//Disable cinema on two clicks within a second
-	var cinemaDisableClickCount = 0;
 	function disableCinema(e){
 		e.stopPropagation();
 		if(cinemaDisableClickCount > 0){
@@ -91,7 +108,8 @@
 	//switch menu to bottom
 	document.getElementById('menu').addEventListener('click', (e)=>{
 		e.currentTarget.classList.toggle('active');
-		e.currentTarget.parentNode.parentNode.classList.toggle('bot');
+		menu.classList.toggle('bot');
+		popupElement.classList.toggle('top');
 	});
 
 	//close button
@@ -101,8 +119,7 @@
 	});
 
 	//automatically fade out menu
-	var timeout;
-	var menu = document.querySelector('menu');
+	
 	/**
 	 * blends in menu for 1.5 seconds (longer if called continuously)
 	 */
@@ -110,8 +127,8 @@
 		if(cinema) return;
 		menu.classList.remove('fadeout');
 		menu.classList.add('fadein');
-		clearTimeout(timeout);
-		timeout = setTimeout(function () {
+		clearTimeout(fadeTimeout);
+		fadeTimeout = setTimeout(function () {
 				menu.classList.remove('fadein');
 				menu.classList.add('fadeout');
 		}, 1500);
