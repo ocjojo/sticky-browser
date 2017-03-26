@@ -64,11 +64,7 @@ function createWindow() {
 		minHeight: 160,
 		frame: false,
 		alwaysOnTop: true,
-		fullscreenable: false,
-		webPreferences: {
-			// The `plugins` have to be enabled.
-			plugins: widevine
-		},
+		fullscreenable: false
 	});
 
 	// and load the index.html of the app.
@@ -152,6 +148,9 @@ ipcMain.on('toggle', (event, arg) => {
 			break;
 		case 'close':
 			mainWindow.close();
+			break;
+		case 'widevine':
+			event.sender.send('widevine', widevine);
 			break;
 		default:
 			break;

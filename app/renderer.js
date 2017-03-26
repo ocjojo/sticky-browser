@@ -7,6 +7,16 @@
 
 	var webview;
 
+	//checks if widevine is loaded
+	ipcRenderer.send('toggle', 'widevine');
+	ipcRenderer.on('widevine', (event, arg) => {
+		console.log(arg);
+	});
+
+	/**
+	 * loads a url into webview, prepends 'https' if protocol is missing
+	 * @param  {string} url the url to be loaded
+	 */
 	function loadWebview(url){
 		if(url.indexOf('//') == -1){
 			url = "https://" + url;
@@ -22,18 +32,19 @@
 		}
 	}
 	
-	var input = document.getElementById('input');
 
-	//after paste set src on webview
+	var input = document.getElementById('input');
+	// event listener for paste to url bar
 	input.addEventListener('paste', (event)=>{
-		//needed for 
+		//needed for value to be accessible
 		setTimeout(()=>{
 			loadWebview(event.target.value);
 		}, 0);
 	});
+	// event listener for typing
 	input.addEventListener('keyup', (e)=>{
-		toggleFade();
-		if (e.keyCode == 13) {
+		toggleFade(); //keep menu visible on typing
+		if (e.keyCode == 13) { //on enter load url
 			loadWebview(e.target.value);
 		}
 	});
@@ -77,6 +88,7 @@
 		ipcRenderer.send('toggle', 'fullscreen');
 	});
 
+	//switch menu to bottom
 	document.getElementById('menu').addEventListener('click', (e)=>{
 		e.currentTarget.classList.toggle('active');
 		e.currentTarget.parentNode.parentNode.classList.toggle('bot');
@@ -88,8 +100,12 @@
 		e.currentTarget.classList.toggle('active');
 	});
 
+	//automatically fade out menu
 	var timeout;
 	var menu = document.querySelector('menu');
+	/**
+	 * blends in menu for 1.5 seconds (longer if called continuously)
+	 */
 	function toggleFade(){
 		if(cinema) return;
 		menu.classList.remove('fadeout');
