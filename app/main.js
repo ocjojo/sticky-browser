@@ -158,3 +158,4 @@ ipcMain.on('toggle', (event, arg) => {
 });
 
 //TODO: save settings
+//TODO: on focus, focus webview?

@@ -124,7 +124,7 @@
 	 * blends in menu for 1.5 seconds (longer if called continuously)
 	 */
 	function toggleFade(){
-		if(cinema) return;
+		if(cinemaMode) return;
 		menu.classList.remove('fadeout');
 		menu.classList.add('fadein');
 		clearTimeout(fadeTimeout);
