@@ -84,6 +84,10 @@ function createWindow() {
 		// when you should delete the corresponding element.
 		mainWindow = null;
 	});
+
+	mainWindow.on('focus', function() {
+		mainWindow.webContents.send('main', 'focus');
+	});
 }
 
 // This method will be called when Electron has finished
@@ -150,7 +154,9 @@ ipcMain.on('toggle', (event, arg) => {
 			mainWindow.close();
 			break;
 		case 'widevine':
-			event.sender.send('widevine', widevine);
+			if(!widevine){
+				event.sender.send('main', 'widevineDisabled');
+			}
 			break;
 		default:
 			break;
@@ -158,4 +164,3 @@ ipcMain.on('toggle', (event, arg) => {
 });
 
 //TODO: save settings
-//TODO: on focus, focus webview?

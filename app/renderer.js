@@ -5,7 +5,7 @@
 (function(){
 	const {ipcRenderer} = require('electron');
 
-	var webview;
+	var webview = document.getElementById('webview');
 	var popupElement = document.getElementById('popup');
 	var fadeTimeout;
 	var menu = document.querySelector('menu');
@@ -15,11 +15,18 @@
 
 	//checks if widevine is loaded
 	ipcRenderer.send('toggle', 'widevine');
-	ipcRenderer.on('widevine', (event, active) => {
-		if(!active){
-			popup("Could not locate widevine. Will not be able to play encrypted content.");
+	ipcRenderer.on('main', (event, arg) => {
+		switch(arg){
+			case 'focus':
+				webview.focus();
+				break;
+			case 'widevineDisabled':
+				popup("Could not locate widevine. Will not be able to play encrypted content.");
+				break;
+			default:
+				break;
 		}
-	});
+	});  
 
 	/**
 	 * loads a url into webview, prepends 'https' if protocol is missing
@@ -29,15 +36,10 @@
 		if(url.indexOf('//') == -1){
 			url = "https://" + url;
 		}
-		if(!webview){
-			webview = document.getElementById('webview');
-			webview.src = url;
-			// webview.addEventListener('dom-ready', (e) => {
-			// 	webview.openDevTools();
-			// });
-		} else {
-			webview.loadURL(url);
-		}
+		webview.src = url;
+		// webview.addEventListener('dom-ready', (e) => {
+		// 	webview.openDevTools();
+		// });
 	}
 
 	/**
