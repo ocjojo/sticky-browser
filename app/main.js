@@ -28,11 +28,15 @@ function registerWidevine(){
 	try{
 		versions = fs.readdirSync(chromeDir);
 		// filter same major version
-		versions = versions.filter(version=>{
+		sameVersion = versions.filter(version=>{
 			return process.versions.chrome.split('.')[0] == version.split('.')[0];
 		});
+		//try any found versions if not same version found.
+		if(sameVersion.length){
+			versions = sameVersion;
+		}
 		//read manifest for widevine-cdm-version
-		manifest = require(path.join(chromeDir, versions[0], widevineDir, 'manifest.json'));	
+		manifest = require(path.join(chromeDir, versions.pop(), widevineDir, 'manifest.json'));	
 	} catch(e){
 		return false;
 	}
