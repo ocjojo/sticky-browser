@@ -37,9 +37,11 @@
 			url = "https://" + url;
 		}
 		webview.src = url;
-		// webview.addEventListener('dom-ready', (e) => {
-		// 	webview.openDevTools();
-		// });
+		webview.addEventListener('load-commit', (e) => {
+			if(e.isMainFrame){
+				urlbar.value = e.url;
+			}			
+		});
 	}
 
 	/**
