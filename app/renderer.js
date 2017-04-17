@@ -23,6 +23,9 @@
 			case 'widevineDisabled':
 				popup("Could not locate widevine. Will not be able to play encrypted content.");
 				break;
+			case 'toggle-fullscreen':
+				document.getElementById('fullscreen').classList.toggle('active');
+				break;
 			default:
 				break;
 		}
@@ -105,7 +108,6 @@
 
 	//fullscreen toggle
 	document.getElementById('fullscreen').addEventListener('click', (e)=>{
-		e.currentTarget.classList.toggle('active');
 		ipcRenderer.send('toggle', 'fullscreen');
 	});
 

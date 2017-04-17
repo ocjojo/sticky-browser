@@ -112,6 +112,16 @@ app.on('ready', ()=>{
 		    { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
 		    { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
 		    { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+		]},
+		{
+		label: "View",
+		submenu: [
+		    { label: "Toggle fullscreen",
+		      accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
+		      click: function(){
+		    	fullscreen();
+		      }
+			}
 		]}
 	];
 
@@ -137,22 +147,29 @@ app.on('activate', function() {
 	}
 });
 
+/**
+ * toggles fullscreen
+ * @param  {bool} on if true sets fullscreen, if false leaves fullscreen, if not provided toggles
+ */
+function fullscreen(on){
+	//send event to update menu elements
+	mainWindow.webContents.send('main', 'toggle-fullscreen');
+
+	if(typeof on == 'undefined') on = !mainWindow.isFullScreenable();
+	if(on) mainWindow.setFullScreenable(on);
+	mainWindow.setFullScreen(on);
+	if(!on) mainWindow.setFullScreenable(on);
+}
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
 ipcMain.on('toggle', (event, arg) => {
 	switch(arg){
 		case 'pin':
 			mainWindow.setAlwaysOnTop(!mainWindow.isAlwaysOnTop());
 			break;
 		case 'fullscreen':
-			if(!mainWindow.isFullScreenable()){
-				mainWindow.setFullScreenable(true);
-				mainWindow.setFullScreen(true);
-			} else {
-				mainWindow.setFullScreen(false);
-				mainWindow.setFullScreenable(false);
-			}
+			fullscreen();
 			break;
 		case 'close':
 			mainWindow.close();
