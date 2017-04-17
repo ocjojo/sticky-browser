@@ -94,6 +94,7 @@
 	//Disable cinema on two clicks within a second
 	function disableCinema(e){
 		e.stopPropagation();
+		webview.focus();
 		if(cinemaDisableClickCount > 0){
 			toggleCinema();
 		} else {
