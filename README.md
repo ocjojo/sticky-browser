@@ -32,7 +32,7 @@ Currently this is [neither bundled with electron](https://github.com/electron/el
 
 This application looks for the plugin shipped with the [chrome browser](https://www.google.de/chrome/browser/desktop/index.html).
 
-Currently this only looks in one path, because I just need that one. PRs welcome to add support a wider range of macOS versions, as well as wndows and linux.
+Currently this only looks in one path, because I just need that one. PRs welcome to add support for a wider range of macOS versions, as well as windows and linux.
 
 ## Development
 
