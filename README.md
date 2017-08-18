@@ -9,6 +9,8 @@ It allows you to watch videos/movies picture-in-picture, so you can
 - have a video chat while viewing other documents
 - ...
 
+Download from [release page](https://github.com/ocjojo/sticky-browser/releases).
+
 ---
 
 ![Screenshot StickyBrowser](https://user-images.githubusercontent.com/2684851/29438691-a9af8b1e-83b8-11e7-931b-e00fd39611e0.png)
