@@ -9,6 +9,20 @@ It allows you to watch videos/movies picture-in-picture, so you can
 - have a video chat while viewing other documents
 - ...
 
+---
+
+![Screenshot StickyBrowser](https://user-images.githubusercontent.com/2684851/29438691-a9af8b1e-83b8-11e7-931b-e00fd39611e0.png)
+
+## Controls
+
+- Move window: kind of self-explaining
+- Sticky-mode: Toggle always-on-top
+- Cinema-mode: Hides menu and makes whole window draggable. To disable cinema-mode double-click on window.
+- Fullscreen: Toggle fullscreen mode
+- Switch toolbar: switches the buttons- & urlbar to the bottom of the window.
+
+![Screenshot StickyBrowser Controls](https://user-images.githubusercontent.com/2684851/29438929-5a787630-83ba-11e7-8f83-71737fcfc189.png)
+
 ## Widewine & DRM protected content
 
 To watch DRM protected content electron needs the [widevine plugin](http://www.widevine.com/).
