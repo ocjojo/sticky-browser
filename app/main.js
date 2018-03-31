@@ -5,6 +5,8 @@ const {
 	ipcMain
 } = require('electron');
 
+const DEBUG = true;
+
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
@@ -36,7 +38,8 @@ function registerWidevine(){
 			versions = sameVersion;
 		}
 		//read manifest for widevine-cdm-version
-		manifest = require(path.join(chromeDir, versions.pop(), widevineDir, 'manifest.json'));	
+		manifest = require(path.join(chromeDir, versions.pop(), widevineDir, 'manifest.json'));
+		console.log(manifest);
 	} catch(e){
 		return false;
 	}
@@ -79,7 +82,8 @@ function createWindow() {
 	}));
 
 	// Open the DevTools.
-	// mainWindow.webContents.openDevTools();
+	if(DEBUG)
+		mainWindow.webContents.openDevTools();
 
 	// Emitted when the window is closed.
 	mainWindow.on('closed', function() {
