@@ -29,6 +29,10 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate {
         view.addSubview(webView)
     }
 
+    override func viewDidAppear() {
+        self.toggleAlwaysOnTop(sender: self)
+    }
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
@@ -44,7 +48,10 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("finish to load")
     }
-
+    
+    @IBAction func toggleAlwaysOnTop(sender: AnyObject) {
+        view.window?.level = .floating
+    }
 
 }
 
