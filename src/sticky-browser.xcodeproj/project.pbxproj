@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		809011C0208ADEFD00371D65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 809011BF208ADEFD00371D65 /* Assets.xcassets */; };
 		80FDB975208AB7E4001EF11A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FDB974208AB7E4001EF11A /* AppDelegate.swift */; };
 		80FDB977208AB7E4001EF11A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FDB976208AB7E4001EF11A /* ViewController.swift */; };
-		80FDB979208AB7E5001EF11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FDB978208AB7E5001EF11A /* Assets.xcassets */; };
 		80FDB97C208AB7E5001EF11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80FDB97A208AB7E5001EF11A /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		80FDB971208AB7E4001EF11A /* sticky-browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sticky-browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		809011BF208ADEFD00371D65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		80FDB971208AB7E4001EF11A /* StickyBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickyBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80FDB974208AB7E4001EF11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80FDB976208AB7E4001EF11A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		80FDB978208AB7E5001EF11A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80FDB97B208AB7E5001EF11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80FDB97D208AB7E5001EF11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80FDB97E208AB7E5001EF11A /* sticky_browser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sticky_browser.entitlements; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		80FDB972208AB7E4001EF11A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80FDB971208AB7E4001EF11A /* sticky-browser.app */,
+				80FDB971208AB7E4001EF11A /* StickyBrowser.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,9 +53,9 @@
 		80FDB973208AB7E4001EF11A /* sticky-browser */ = {
 			isa = PBXGroup;
 			children = (
+				809011BF208ADEFD00371D65 /* Assets.xcassets */,
 				80FDB974208AB7E4001EF11A /* AppDelegate.swift */,
 				80FDB976208AB7E4001EF11A /* ViewController.swift */,
-				80FDB978208AB7E5001EF11A /* Assets.xcassets */,
 				80FDB97A208AB7E5001EF11A /* Main.storyboard */,
 				80FDB97D208AB7E5001EF11A /* Info.plist */,
 				80FDB97E208AB7E5001EF11A /* sticky_browser.entitlements */,
@@ -66,9 +66,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80FDB970208AB7E4001EF11A /* sticky-browser */ = {
+		80FDB970208AB7E4001EF11A /* StickyBrowser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80FDB981208AB7E5001EF11A /* Build configuration list for PBXNativeTarget "sticky-browser" */;
+			buildConfigurationList = 80FDB981208AB7E5001EF11A /* Build configuration list for PBXNativeTarget "StickyBrowser" */;
 			buildPhases = (
 				80FDB96D208AB7E4001EF11A /* Sources */,
 				80FDB96E208AB7E4001EF11A /* Frameworks */,
@@ -78,9 +78,9 @@
 			);
 			dependencies = (
 			);
-			name = "sticky-browser";
+			name = StickyBrowser;
 			productName = "sticky-browser";
-			productReference = 80FDB971208AB7E4001EF11A /* sticky-browser.app */;
+			productReference = 80FDB971208AB7E4001EF11A /* StickyBrowser.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -116,7 +116,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80FDB970208AB7E4001EF11A /* sticky-browser */,
+				80FDB970208AB7E4001EF11A /* StickyBrowser */,
 			);
 		};
 /* End PBXProject section */
@@ -126,7 +126,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80FDB979208AB7E5001EF11A /* Assets.xcassets in Resources */,
+				809011C0208ADEFD00371D65 /* Assets.xcassets in Resources */,
 				80FDB97C208AB7E5001EF11A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +318,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80FDB981208AB7E5001EF11A /* Build configuration list for PBXNativeTarget "sticky-browser" */ = {
+		80FDB981208AB7E5001EF11A /* Build configuration list for PBXNativeTarget "StickyBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80FDB982208AB7E5001EF11A /* Debug */,
