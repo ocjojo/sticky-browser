@@ -18,6 +18,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate {
         
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: view.frame, configuration: webConfiguration)
+        webView.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
