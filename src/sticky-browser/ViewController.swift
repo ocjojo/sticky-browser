@@ -33,12 +33,6 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate {
         self.toggleAlwaysOnTop(sender: self)
     }
     
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         print(error.localizedDescription)
     }
