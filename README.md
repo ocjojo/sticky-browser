@@ -1,3 +1,11 @@
+:warning: **Archived**  
+Since this function became available again with Chrome 70, there is no need to maintain this repo any longer.
+
+Just use the native API `document.querySelector('video').requestPictureInPicture();`
+
+For convenience, you can create a bookmark.
+Use the following as URL: `javascript:document.querySelector('video').requestPictureInPicture();`
+
 # StickyBrowser
 
 This is an [electron-based](https://electron.atom.io/) minimal browser, that can be made sticky/always-on-top.
